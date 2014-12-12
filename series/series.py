@@ -1,17 +1,14 @@
-def slices(number_string, length):
+def slices(number_string, series_length):
 
-	if length > len(number_string):
-		raise ValueError('slice length should not be larger than string length.')
+	#error checking
+	if series_length > len(number_string):
+		raise ValueError('Series length should not be larger than string length.')
 
-	elif length < 1:
-		raise ValueError('slice length should not be zero.')
+	elif series_length < 1:
+		raise ValueError('Series length should not be less than one.')
 
-	number_list = number_string.split()
+	#convert input string to list of ints
+	numberstring_list_as_ints = [int(i) for i in list(number_string)]
 
-	list_of_lists = []
-
-	for i in range(len(number_list)):
-		#sub_list = number_list[i:i+length-1]
-		list_of_lists.append(number_list[i:i+length-1])
-
-	return list_of_lists
+	#iterate through list of ints, and make series list.
+	return [(numberstring_list_as_ints[i:i+series_length]) for i in range(0,len(numberstring_list_as_ints) - series_length + 1)]
